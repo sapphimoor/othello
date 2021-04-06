@@ -8,7 +8,7 @@ int board[8][8];
 
 void init();
 int reverse(char, char, int);
-int isPuttable(int);
+int isPuttable(int, int);
 void set_board(int, int, int);
 void result();
 
@@ -18,7 +18,7 @@ int main() {
     
     init();
 
-    while(isPuttable(k)) {
+    while(isPuttable(k, 0)) {
         SET_CURSOR(2, 1);
         printf("%c", 'A'+k-1);
 
@@ -33,8 +33,7 @@ int main() {
             while(getchar()!=10);
         } while(reverse(r, c, k));
 
-        //k = k % 2 + 1;
-        k ^= 1;
+        k = k % 2 + 1;
     }
 
     result();
@@ -246,7 +245,7 @@ int reverse(char r, char c, int k) {
 }
 
 
-int isPuttable(int k) {
+int isPuttable(int k, int s) {
     int i, j, i2, j2;
 
     for(i=0; i<8; i++) {
@@ -311,7 +310,11 @@ int isPuttable(int k) {
         }
     }
 
-    return 0;
+    if(s) return 0;
+    else {
+        k = k % 2 + 1;
+        return isPuttable(k, 1);
+    }
 }
 
 
