@@ -558,7 +558,7 @@ void set_board(int i, int j) {
 }
 
 void result() {
-  int i, j, countA = 0, countB = 0;
+  int i, j;
   char playerA[5], playerB[5];
 
   if (cpu == 3) {
@@ -574,7 +574,7 @@ void result() {
 
   SET_CURSOR(2, 0);
   printf("       ~FINISH~                 \n");
-  if (countA == countB) {
+  if (disks[0] == disks[1]) {
     printf("%s: %d ,  %s: %d      \\Draw/", playerA, disks[1], playerB,
            disks[0]);
   } else {
